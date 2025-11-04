@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useUser } from '../context/UserContext';
 import toast, { Toaster } from 'react-hot-toast';
 import UserCard from '../components/UserCard';
+import API from '../api/axios';
 
 const ExplorePage = () => {
     const { user } = useUser();
@@ -12,9 +13,7 @@ const ExplorePage = () => {
 
     const fetchExplore = async () => {
         try {
-            const res = await axios.get(`${import.meta.env.VITE_API_URL}/feed/explore`, {
-                headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-            });
+            const res = await API.get('/feed/explore')
             setSuggestedUsers(res.data.suggestedUsers);
 
 
