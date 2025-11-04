@@ -12,7 +12,7 @@ dotEnv.config();
 
 // Middlewares
 app.use(cors({
-    origin: ['https://social-media-app-two-plum.vercel.app/',
+    origin: ['https://social-media-app-two-plum.vercel.app',
         'http://localhost:5174'
     ], // only allow your frontend
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
