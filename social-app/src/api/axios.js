@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 const API = axios.create({
-    baseURL: 'http://localhost:3000/api', // update if your backend URL is different
+    baseURL: 'https://social-media-app-backend-nfnd.onrender.com/api',
+    // baseURL: 'http://localhost:3000/api', 
 });
 
 // Attach token automatically if available

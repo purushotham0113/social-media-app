@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { useUser } from '../context/UserContext';
-import axios from 'axios';
+import { API } from '../utils/apiConfig';
 import toast, { Toaster } from 'react-hot-toast';
 
 const RegisterPage = () => {
@@ -25,7 +25,7 @@ const RegisterPage = () => {
 
         setLoading(true);
         try {
-            const res = await axios.post(`${import.meta.env.VITE_API_URL}/auth/register`, form);
+            const res = await API.post(`/auth/register`, form);
             const { token } = res.data;
 
             // Save user info in context (we decode username from token or fetch later)
