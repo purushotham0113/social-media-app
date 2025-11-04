@@ -11,7 +11,12 @@ const app = express();
 dotEnv.config();
 
 // Middlewares
-app.use(cors());
+app.use(cors({
+    origin: ['https://social-media-app-two-plum.vercel.app/'], // only allow your frontend
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    credentials: true
+}));
+
 app.use(bodyParser.json());
 app.use(helmet());
 app.use(express.json());

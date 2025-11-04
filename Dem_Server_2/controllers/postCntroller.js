@@ -51,8 +51,6 @@ const getPost = async (req, res, next) => {
 const getPostsOfUser = async (req, res, next) => {
     try {
         const { userId } = req.params
-        console.log(userId)
-
         // const userId = req.user.id
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;
@@ -63,7 +61,7 @@ const getPostsOfUser = async (req, res, next) => {
             .skip(skip)
             .limit(limit)
             .populate('comments.user', 'username profilePic');
-        console.log("in getuser post", posts)
+
         return sendResponse(res, 200, true, "User posts retrieved", { posts, page, limit });
     } catch (err) {
         console.error(err);
@@ -92,7 +90,7 @@ const deletePost = async (req, res, next) => {
         const postId = req.params.id;
 
         const deletedPost = await Post.findByIdAndDelete(postId);
-        console.log(deletePost)
+
         if (!deletedPost) return next({ status: 404, message: "Post not found" });
 
         return sendResponse(res, 200, true, "Post deleted successfully");

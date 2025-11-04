@@ -77,22 +77,14 @@ const getProfile = async (req, res, next) => {
 // UPDATE USER (protected)
 const updateUser = async (req, res, next) => {
     try {
-        console.log("inside update user")
+
         const id = req.user.id;
-
-
         const { bio } = req.body;
-
         const file = req.file;
-
         const updates = {};
         if (bio) updates.bio = bio;
         if (file) updates.profilePic = file.path;
-        console.log(updates)
-
         // Prevent unsafe updates
-
-
         const updatedUser = await User.findByIdAndUpdate(id, updates, { new: true }).select('-password');
         if (!updatedUser) return next({ status: 404, message: "User not found" });
 
@@ -108,9 +100,6 @@ const followById = async (req, res, next) => {
     try {
         const currentUserId = req.user.id;
         const targetUserId = req.params.tid;
-        console.log("inside follow by id")
-        console.log(currentUserId)
-        console.log(targetUserId)
 
         if (currentUserId === targetUserId)
             return next({ status: 400, message: "You cannot follow yourself" });
